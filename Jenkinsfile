@@ -6,10 +6,10 @@ pipeline{
 
     parameters{
 
-        choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
-        string(name: 'ImageName', description: "name of the docker build", defaultValue: 'javaApp')
-        string(name: 'ImageTag', description: "tag of the docker build", defaultValue: 'v1')
-        string(name: 'DockerHubUser', description: "name of the Application", defaultValue: 'swastik18')
+        choice(name: 'action', choices: 'Create\nDelete', description: 'Choose Create or Delete')
+        string(name: 'ImageName', description: "Name of the Docker build", defaultValue: 'javaApp')
+        string(name: 'ImageTag', description: "Tag of the Docker build", defaultValue: 'v1')
+        string(name: 'DockerHubUser', description: "Name of the Docker Hub User", defaultValue: 'swastik18')
     }
 
     stages{
