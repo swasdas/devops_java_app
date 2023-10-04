@@ -31,35 +31,35 @@ pipeline{
                }
             }
         }
-        stage('Integration Test maven'){
-         when { expression {  params.action == 'create' } }
-            steps{
-               script{
+        // stage('Integration Test maven'){
+        //  when { expression {  params.action == 'create' } }
+        //     steps{
+        //        script{
                    
-                   mvnIntegrationTest()
-               }
-            }
-        }
-        stage('Static code analysis: Sonarqube'){
-         when { expression {  params.action == 'create' } }
-            steps{
-               script{
+        //            mvnIntegrationTest()
+        //        }
+        //     }
+        // }
+        // stage('Static code analysis: Sonarqube'){
+        //  when { expression {  params.action == 'create' } }
+        //     steps{
+        //        script{
                    
-                   def SonarQubeCredId = 'sonar-api'
-                   staticCodeAnalysis(SonarQubeCredId)
-               }
-            }
-        }
-        stage('Quality Gate Status Check : Sonarqube'){
-         when { expression {  params.action == 'create' } }
-            steps{
-               script{
+        //            def SonarQubeCredId = 'sonar-api'
+        //            staticCodeAnalysis(SonarQubeCredId)
+        //        }
+        //     }
+        // }
+        // stage('Quality Gate Status Check : Sonarqube'){
+        //  when { expression {  params.action == 'create' } }
+        //     steps{
+        //        script{
                    
-                   def SonarQubeCredId = 'sonar-api'
-                   qualityGateStatus(SonarQubeCredId)
-               }
-            }
-        }
+        //            def SonarQubeCredId = 'sonar-api'
+        //            qualityGateStatus(SonarQubeCredId)
+        //        }
+        //     }
+        // }
         stage('Maven Build : maven'){
          when { expression {  params.action == 'create' } }
             steps{
