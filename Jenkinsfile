@@ -13,9 +13,8 @@ pipeline{
     }
 
     stages{
-         
         stage('Git Checkout'){
-                    when { expression {  params.action == 'create' } }
+          when { expression {  params.action == 'create' } }
             steps{
             gitCheckout(
                 branch: "main",
@@ -23,46 +22,44 @@ pipeline{
             )
             }
         }
-        // stage('Unit Test maven'){
-         
-        //  when { expression {  params.action == 'create' } }
-
-        //     steps{
-        //        script{
+        stage('Unit Test maven'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-        //            mvnTest()
-        //        }
-        //     }
-        // }
-        // stage('Integration Test maven'){
-        //  when { expression {  params.action == 'create' } }
-        //     steps{
-        //        script{
+                   mvnTest()
+               }
+            }
+        }
+        stage('Integration Test maven'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-        //            mvnIntegrationTest()
-        //        }
-        //     }
-        // }
-        // stage('Static code analysis: Sonarqube'){
-        //  when { expression {  params.action == 'create' } }
-        //     steps{
-        //        script{
+                   mvnIntegrationTest()
+               }
+            }
+        }
+        stage('Static code analysis: Sonarqube'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-        //            def SonarQubeCredId = 'sonar-api'
-        //            staticCodeAnalysis(SonarQubeCredId)
-        //        }
-        //     }
-        // }
-        // stage('Quality Gate Status Check : Sonarqube'){
-        //  when { expression {  params.action == 'create' } }
-        //     steps{
-        //        script{
+                   def SonarQubeCredId = 'sonar-api'
+                   staticCodeAnalysis(SonarQubeCredId)
+               }
+            }
+        }
+        stage('Quality Gate Status Check : Sonarqube'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-        //            def SonarQubeCredId = 'sonar-api'
-        //            qualityGateStatus(SonarQubeCredId)
-        //        }
-        //     }
-        // }
+                   def SonarQubeCredId = 'sonar-api'
+                   qualityGateStatus(SonarQubeCredId)
+               }
+            }
+        }
         stage('Maven Build : maven'){
          when { expression {  params.action == 'create' } }
             steps{
