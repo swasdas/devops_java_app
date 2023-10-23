@@ -58,7 +58,6 @@ pipeline{
     //      when { expression {  params.action == 'create' } }
     //         steps{
     //            script{
-                   
     //                def SonarQubecredId = 'sonar-api'
     //                QualityGateStatus(SonarQubecredId)
     //            }
@@ -76,7 +75,6 @@ pipeline{
          when { expression {  params.action == 'create' } }
             steps{
                script{
-                   
                    dockerBuildECR("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
                }
             }
@@ -110,8 +108,7 @@ pipeline{
 //     steps{
 //         script{
 //             dir('eks_module') {
-//               sh """
-                  
+//               sh """   
 //                   terraform init 
 //                   terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars
 //                   terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars --auto-approve
